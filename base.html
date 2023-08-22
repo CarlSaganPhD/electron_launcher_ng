@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Browser Launcher</title>
+    <!-- Include Bootstrap CSS via CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+                body {
+            font-family: 'Courier Prime', monospace;
+            padding: 20px;
+        }
+
+        h1, h2, h3, p, .card-title {
+            font-family: 'Courier Prime', monospace;
+        }
+
+        .page-container {
+            padding: 2cqmax;
+        }
+
+        .clickable-card:active {
+    transform: scale(0.98); /* slightly reduces the size of the card for a 'press' effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* reduces the depth of the shadow to match the pressed effect */
+}
+
+        body {
+  background-color: #fbfbfb;
+}
+@media (min-width: 991.98px) {
+  main {
+    padding-left: 240px;
+  }
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding: 58px 0 0; /* Height of navbar */
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+  width: 240px;
+  z-index: 600;
+}
+
+     /* Your custom CSS to override the container max-width */
+        @media (min-width: 1200px) {
+            .container,
+            .container-lg,
+            .container-md,
+            .container-sm,
+            .container-xl {
+                max-width: 95%; /* Adjust the max-width value as needed */
+            }
+        }
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    width: 100%;
+  }
+}
+.sidebar .active {
+  border-radius: 5px;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.75rem 1.25rem;
+    color: #ffffff;
+    background-color: #343a40; /* Change this to your desired color */
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.list-group-item:hover {
+    position: relative;
+    display: block;
+    padding: 0.75rem 1.25rem;
+    color: #ffffff;
+    background-color: #565F68; /* Change this to your desired color */
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.greyed-out {
+    opacity: 0.5;
+}
+    </style>
+</head>
+</head>
+<body>
+<!--Main Navigation-->
+<header>
+<!-- Sidebar -->
+<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-dark">
+  <div class="position-sticky d-flex flex-column h-95 p-4">
+
+      <!-- Card 1: Services -->
+      <a href="#" class="card mb-3 flex-grow-1 ripple list-group-item-action text-decoration-none text-center" id="services" data-endpoint="list_services" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+          <div class="card-body">
+            <img src="./images/setting.png" alt="WiFi Icon">
+              <div>
+                  <span>Services</span>
+              </div>
+          </div>
+      </a>
+
+      <!-- Card 2: Apps -->
+      <a href="#" class="card mb-3 flex-grow-1 ripple list-group-item-action text-decoration-none text-center" id="apps" data-endpoint="list_apps">
+          <div class="card-body">
+            <img src="./images/Widget.png" alt="WiFi Icon">
+              <div>
+                  <span>Apps</span>
+              </div>
+          </div>
+      </a>
+
+      <!-- Card 3: Wifi -->
+      <a href="#" class="card flex-grow-1 ripple list-group-item-action text-decoration-none text-center" id="wifi" data-endpoint="wifi_scan">
+          <div class="card-body">
+            <img src="./images/ITO.png" alt="WiFi Icon">
+              <div>
+                  <span>Wifi</span>
+              </div>
+          </div>
+      </a>
+
+  </div>
+</nav>
+<!-- Sidebar -->
+
+  
+    <!-- Navbar -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#sidebarMenu"
+          aria-controls="sidebarMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+  
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://farmng-sep.s3.us-east-2.amazonaws.com/Frame+1+(5).png"
+            height="50"
+            alt="MDB Logo"
+            loading="lazy"
+          />
+        </a>
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+  </header>
+  <!--Main Navigation-->
+  
+  <!--Main layout-->
+  <main style="margin-top: 58px;">
+    <div class="container pt-4">
+        
+    </div>
+  </main>
+  <!--Main layout-->
+</body>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const sidebarButtons = document.querySelectorAll(".list-group-item-action");
+  
+      const applyGreyedOutEffect = (activeButton) => {
+          // Remove active and greyed-out from all buttons
+          sidebarButtons.forEach(btn => {
+              btn.classList.remove("active");
+              btn.classList.remove("greyed-out");
+          });
+  
+          // Add active to the specified button and greyed-out to others
+          activeButton.classList.add("active");
+          sidebarButtons.forEach(btn => {
+              if (btn !== activeButton) {
+                  btn.classList.add("greyed-out");
+              }
+          });
+      };
+  
+      sidebarButtons.forEach(button => {
+          button.addEventListener("click", function () {
+              const endpoint = button.getAttribute("data-endpoint");
+              if (endpoint) {
+                  applyGreyedOutEffect(button);
+  
+                  // Use the IPC navigate function to load the new page
+                  window.myAPI.navigate(endpoint);  // Remember, this is the function you exposed in preload2.js
+              }
+          });
+      });
+  
+      // Set the active button based on the URL path
+      const currentPath = window.location.pathname;
+      sidebarButtons.forEach(button => {
+          const endpoint = button.getAttribute("data-endpoint");
+          if (endpoint && currentPath.includes(endpoint)) {
+              applyGreyedOutEffect(button);
+          }
+      });
+  });
+  </script>
+  
+</html>
